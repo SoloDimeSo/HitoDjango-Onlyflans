@@ -1,9 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect , get_object_or_404
 
 from web.forms import ContactForm
 from web.models import Flan 
 
 from .forms import ContactForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required
+
+import stripe
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
 
 # Create your views here.
 
@@ -14,6 +22,7 @@ def index(request):
 def about(request):
     return render(request , 'about.html' ,{})
 
+@login_required
 def welcome(request):
     flanes_privados = Flan.objects.filter(is_private=True)
     return render(request , 'welcome.html' ,{'flanes': flanes_privados})
@@ -31,4 +40,20 @@ def contac_view(request):
 
 def contac_view_exito(request):
     return render(request , 'contacto_exitoso.html', {})
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
     
+class CustomLoginView(LogoutView):
+    next_page = '/'
+    
+    
+def flan_details(request , flan_id):
+    flan = get_object_or_404(Flan, pk=flan_id)
+    return render(request, 'flan_detail.html',{'flan' : flan})
+
+
+
+
+def compra_exito(request):
+    return render(request, 'gracias_compra.html')

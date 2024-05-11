@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+
+
+<section class="container mx-auto pt-5">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        <div class="col">
+        <div class="card h-300">
+            <img src="{{ flan.imagen }}" height="300px" class="card-img-top" alt="{{ flan.slug }}">
+            <div class="card-body">
+            <h5 class="card-title">{{ flan.name }}</h5>
+            <p class="card-text text-justify">
+                {% if flan.descipcion|length > 100 %}
+                    {{ flan.descipcion|slice:":100" }}... <a href="">descripcion</a>
+                {% else %}
+                    {{ flan.descipcion }}
+                {% endif %}
+            </p>
+            <p> Precio : </p>{{ flan.precio }}
+        </div>
+        <div>
+            <a class="btn btn-primary mt-2" href="{% url 'gracias_compra' %}"> Comprar </a>
+        </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock 'content' %}
+
+

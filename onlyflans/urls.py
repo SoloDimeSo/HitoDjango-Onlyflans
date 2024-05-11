@@ -1,22 +1,7 @@
-"""
-URL configuration for onlyflans project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
-from web.views import contac_view, contac_view_exito, index, about, welcome
+from django.urls import include, path
+from web.views import contac_view, contac_view_exito, flan_details, index, about, welcome, compra_exito
 
 
 urlpatterns = [
@@ -26,4 +11,7 @@ urlpatterns = [
     path('welcome/', welcome, name='bienvenidos'),
     path('contacto_exitoso/', contac_view_exito, name='contacto_exitoso'),
     path('contact_form/', contac_view, name='contacto'),
+    path('accounts/' , include('django.contrib.auth.urls')),
+    path('flan/<int:flan_id>/' , flan_details, name='flan_details'),
+    path('compra_exito/', compra_exito, name= 'gracias_compra')
 ]

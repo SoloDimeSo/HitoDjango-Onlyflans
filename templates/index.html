@@ -4,12 +4,16 @@
 
 {% block 'content' %}
 
+
+
 <section class="container mx-auto pt-5">
   <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
       {% for flan in flanes %}
       <div class="col">
         <div class="card h-100">
-          <img src="{{ flan.imagen }}" height="200px" class="card-img-top" alt="{{ flan.slug }}">
+          <a href="{% url 'flan_details' flan.id %}">
+            <img src="{{ flan.imagen }}" height="200px" class="card-img-top" alt="{{ flan.slug }}">
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ flan.name }}</h5>
             <p class="card-text text-justify">
@@ -20,12 +24,49 @@
                 {% endif %}
             </p>
         </div>
-          <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </div>
+          <p> Precio : </p>{{ flan.precio }}
+        </div>
+        <div>
+          <a class="btn btn-primary mt-2" href="{% url 'gracias_compra' %}"> Comprar </a>
         </div>
       </div>
     {% endfor %}  
   </div>
 </section>
+
+<section class="text-center text-white mt-5"  style="background-color: #45637d">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Iframe -->
+    <section class="">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6">
+          <div class="ratio ratio-16x9">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/HhwaDxAOv3w?si=LT0vCzqErMR6nPjK"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: Iframe -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2024
+    <a class="text-white" href="https://mdbootstrap.com/">SoloDimeSo WEB</a>
+  </div>
+  <!-- Copyright -->
+
+</section>
+
 {% endblock 'content' %}

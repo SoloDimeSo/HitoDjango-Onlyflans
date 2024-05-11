@@ -8,20 +8,23 @@
       {% for flan in flanes %}
       <div class="col">
         <div class="card h-100">
-          <img src="{{ flan.imagen }}" height="200px" class="card-img-top" alt="{{ flan.slug }}">
+          <a href="{% url 'flan_details' flan.id %}">
+            <img src="{{ flan.imagen }}" height="200px" class="card-img-top" alt="{{ flan.slug }}">
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ flan.name }}</h5>
             <p class="card-text text-justify">
-                {% if flan.descripcion|length > 100 %}
-                    {{ flan.descripcion|slice:":100" }}... <a href="">descripcion</a>
+                {% if flan.descipcion|length > 100 %}
+                    {{ flan.descipcion|slice:":100" }}... <a href="">descripcion</a>
                 {% else %}
-                    {{ flan.descripcion }}
+                    {{ flan.descipcion }}
                 {% endif %}
             </p>
         </div>
-          <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </div>
+          <p> Precio : </p>{{ flan.precio }}
+        </div>
+        <div>
+          <a class="btn btn-primary mt-2" href="{% url 'gracias_compra' %}"> Comprar </a>
         </div>
       </div>
     {% endfor %}  
