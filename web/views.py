@@ -7,11 +7,8 @@ from .forms import ContactForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 
-import stripe
-from django.conf import settings
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+
+
 
 # Create your views here.
 
